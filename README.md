@@ -26,6 +26,7 @@
 
 ## Description
 
+Basic repo for learning NestJS and associated technologies. As of 06/20/2020, this repo will expect a Postgres DB running locally to work correctly. 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
