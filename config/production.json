@@ -1,6 +1,6 @@
 {
   "server": {
-    "origin": "http://example-task-management-nestjs.s3-us-west-2.amazonaws.com"
+    "origin": "http://example-task-management-nestjs.s3-website-us-west-2.amazonaws.com"
   },
   "db" : {
     "synchronize": false
