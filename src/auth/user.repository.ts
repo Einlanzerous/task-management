@@ -4,6 +4,8 @@ import { AuthCredentialsDto } from "./dto/auth-credentials.dto";
 import { ConflictException, InternalServerErrorException } from "@nestjs/common";
 import * as bcrypt from 'bcrypt';
 
+const SALT_ROUNDS = 10;
+
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
@@ -11,8 +13,7 @@ export class UserRepository extends Repository<User> {
 
     const user = new User();
     user.username = username;
-    user.salt = await bcrypt.genSalt();
-    user.password = await this.hashPassword(password, user.salt);
+    user.password = await this.hashPassword(password);
 
     try {
       await user.save();
@@ -37,7 +38,7 @@ export class UserRepository extends Repository<User> {
     }
   }
 
-  private async hashPassword(password: string, salt: string): Promise<string> {
-    return bcrypt.hash(password, salt);
+  private async hashPassword(password: string): Promise<string> {
+    return bcrypt.hash(password, SALT_ROUNDS);
   }
 }
